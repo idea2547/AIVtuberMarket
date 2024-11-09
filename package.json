@@ -1,0 +1,24 @@
+{
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
+  "name": "pro01",
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "prebuild": "npm run prebuild --workspaces --if-present",
+    "pretest": "npm run prebuild --workspaces --if-present",
+    "start": "npm start --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
+    "dev": "npm run dev --workspace src/pro01_frontend"
+  },
+  "type": "module",
+  "workspaces": [
+    "src/pro01_frontend"
+  ],
+  "dependencies": {
+    "@pixi/unsafe-eval": "^7.4.2",
+    "pixi.js": "^7.4.2",
+    "svelte-preprocess": "^6.0.3"
+  }
+}

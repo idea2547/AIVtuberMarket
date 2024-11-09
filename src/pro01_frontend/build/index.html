@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="./favicon.ico" />
+	<meta name="viewport" content="width=device-width" />
+	<title>IC Hello Starter</title>
+	
+		<link href="./_app/immutable/assets/2.DmD0FfOq.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.Dgjk09AV.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.DVIutagh.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.W2pu3yam.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.Zgy037zl.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.C1FmrZbK.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.Ca14tyrq.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.Bb42GYW9.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.DZW04MCz.js">
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">  <main><img src="/logo2.svg" alt="DFINITY logo"> <br> <br> <form action="#" data-svelte-h="svelte-1mgy11z"><label for="name">Enter your name:  </label> <input id="name" alt="Name" type="text"> <button type="submit">Click Me!+10!</button></form> <section id="greeting"></section></main> 
+			
+			<script>
+				{
+					__sveltekit_1xzuyz5 = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("./_app/immutable/entry/start.Dgjk09AV.js"),
+						import("./_app/immutable/entry/app.Zgy037zl.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "pro01_frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "setup": "npm i && dfx canister create pro01_backend && dfx generate pro01_backend && dfx deploy",
+    "start": "vite --port 3000",
+    "dev": "vite dev --port 3000",
+    "prebuild": "dfx generate",
+    "build": "tsc && vite build",
+    "format": "prettier --write \"src/**/*.{json,js,jsx,ts,tsx,css,scss}\""
+  },
+  "dependencies": {
+    "@dfinity/agent": "^1.4.0",
+    "@dfinity/candid": "^1.4.0",
+    "@dfinity/principal": "^1.4.0",
+    "ethers": "^6.13.4",
+    "pixi-live2d-display-lipsyncpatch": "^0.5.0-ls-7"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.4",
+    "@sveltejs/kit": "^2.5.26",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.14",
+    "dotenv": "^16.3.1",
+    "postcss": "^8.4.47",
+    "sass": "^1.63.6",
+    "svelte": "^4.2.19",
+    "svelte-check": "^4.0.1",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.3",
+    "vite-plugin-environment": "^1.1.3"
+  }
+}

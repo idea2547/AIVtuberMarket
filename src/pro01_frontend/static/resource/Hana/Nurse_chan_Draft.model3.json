@@ -1,0 +1,29 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "Nurse_chan_Draft.moc3",
+		"Textures": [
+			"Nurse_chan_Draft.1024/texture_00.png"
+		],
+		"Physics": "Nurse_chan_Draft.physics3.json",
+		"DisplayInfo": "Nurse_chan_Draft.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthForm",
+				"ParamMouthOpenY"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeROpen",
+				"ParamEyeLOpen"
+			]
+		}
+	]
+}
