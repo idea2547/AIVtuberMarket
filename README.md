@@ -1,59 +1,95 @@
-# `pro01`
+# 🌐 AI VTuber Marketplace
 
-Welcome to your new `pro01` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+![Project Logo](path/to/logo.png)
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+## 🎉 Overview
+The **AI VTuber Marketplace** is a decentralized platform powered by the Internet Computer Protocol (ICP), Bitfinity, and Live2D, enabling users to create, buy, sell, and interact with AI-driven VTuber NFTs. These dynamic avatars are designed for virtual influencer, gaming, and interactive digital applications, giving creators full ownership and monetization opportunities through blockchain.
 
-To learn more before you start working with `pro01`, see the following documentation available online:
+### 🌟 Key Features
+- **🎭 Dynamic VTuber NFTs**: Interact with unique, AI-driven characters that can evolve and create personalized content.
+- **🔗 Cross-Chain Compatibility**: Leverage ICP and EVM-compatible blockchain for broad accessibility and scalability.
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+## 🧐 Problem Statement
+- **🚧 Barriers for Virtual Influencers**: VTubing can be resource-intensive, with limited monetization options controlled by centralized platforms.  
+- **🔐 Ownership and Decentralization**: Traditional platforms do not allow full ownership or user-driven monetization.  
+- **💸 Cost and Scalability**: Blockchain storage and transactions can be costly, affecting accessibility and user experience.
 
-If you want to start working on your project right away, you might want to try the following commands:
+## 💡 Solution
+Our decentralized marketplace allows users to mint, trade, and interact with AI VTuber avatars as NFTs, providing:
+- **📜 Full Ownership for Creators and Fans**: Blockchain-based digital assets.
+- **💰 Affordable On-Chain and Off-Chain Interactions**: Optimized with Solidity and ICP for cost-effective AI processing and scalable storage.
+- **🤖 Personalized, AI-Driven Interactions**: AI models create custom content, enhancing user engagement.
 
-```bash
-cd pro01/
-dfx help
-dfx canister --help
-```
+## 🏆 Competitors
+- **📺 YouTube, Twitch**: Centralized streaming platforms with limited ownership and NFT support.
+- **🖼️ NFT Marketplaces (e.g., OpenSea)**: Do not support dynamic, AI-driven avatars.
+- **🤖 AI Avatar Platforms (e.g., Synthesia)**: Limited to closed, non-blockchain environments without decentralized ownership.
 
-## Running the project locally
+## 🚀 Project Setup
 
-If you want to test your project locally, you can use the following commands:
+### 🛠️ Prerequisites
+- [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)
+- [DFX](https://smartcontracts.org/docs/developers-guide/install-upgrade-remove.html) (for local deployment)
+- Compatible Wallet (e.g., MetaMask)
+- [Bitfinity Testnet](https://bitfinity.network/faucet) for testnet tokens
 
-```bash
-# Starts the replica, running in the background
+### ⚙️ Installation
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/idea2547/AIVtuberMarket.git
+   cd AIVtuberMarket
+Install Dependencies:
+
+bash
+Copy code
+npm install
+Start Local Replica:
+
+bash
+Copy code
 dfx start --background
+Deploy Canisters:
 
-# Deploys your canisters to the replica and generates your candid interface
+bash
+Copy code
 dfx deploy
-```
+Start Frontend Server:
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
-
-If you have made changes to your backend canister, you can generate a new candid interface with
-
-```bash
-npm run generate
-```
-
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
-
-If you are making frontend changes, you can start a development server with
-
-```bash
+bash
+Copy code
 npm start
-```
+Access your application at http://localhost:8080.
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
+📖 Usage Instructions
+Set Up Your Wallet:
 
-### Note on frontend environment variables
+Install and configure a compatible wallet like MetaMask.
+Connect to the Bitfinity testnet and obtain testnet tokens here.
+Upload a Live2D Model:
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
+Prepare a Live2D model file or use one from the Live2D Sample Gallery.
+Upload the model to ICP storage for use in the dApp.
+Mint a VTuber NFT:
 
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+Navigate to the "Create" page.
+Upload your model file and mint a unique VTuber NFT.
+Explore the Marketplace:
+
+Browse and interact with AI VTubers, and trade NFTs with other users.
+Interact with AI VTubers:
+
+(Coming Soon) Real-time, personalized AI chat features will be available to enhance user engagement.
+🧩 Smart Contracts
+Mainnet Frontend: https://imr7x-kaaaa-aaaaj-azvwq-cai.icp0.io/
+Mainnet Backend: https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=ilqzd-hyaaa-aaaaj-azvwa-cai
+🎥 Demo
+Watch Demo Video
+🛤️ Roadmap
+Q1: Launch AI-driven chat and interaction features
+Q2: Introduce additional personality styles and customizable traits
+Q3: Expand to support more blockchain networks
+📜 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+🤝 Contributing
+We welcome contributions to enhance the AI VTuber Marketplace. Please follow the Contributing Guidelines for submitting pull requests and issues.
