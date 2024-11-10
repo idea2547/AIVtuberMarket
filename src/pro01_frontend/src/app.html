@@ -2,17 +2,28 @@
 <html lang="en" data-theme="light">
 
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
-	<meta name="viewport" content="width=device-width" />
-	<title>IC Hello Starter</title>
+  <!-- Meta charset, favicon, and viewport setup -->
+  <meta charset="utf-8" />
+  <link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Your Web App Title</title>
 
 
-	%sveltekit.head%
+  <!-- SvelteKit Head (auto-generated) -->
+  %sveltekit.head%
+
 </head>
 
 <body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
+  <!-- Main content of the body -->
+  <div style="display: contents">%sveltekit.body%</div>
+
+  <!-- Example of inline script with nonce -->
+  <script nonce="abc123">
+    // Inline script allowed by CSP
+    console.log("Inline script is working because of the nonce!");
+  </script>
+
 </body>
 
 </html>
