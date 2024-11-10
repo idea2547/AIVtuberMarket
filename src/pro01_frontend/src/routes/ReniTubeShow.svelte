@@ -4,7 +4,7 @@
     import '@pixi/unsafe-eval';
 
     import { Application, Ticker } from "pixi.js"
-    import { appStore, speakStore } from "../../stores/modelStore";
+    import { appStore, speakStore } from "../stores/modelStore";
 
     console.log("Top level script loaded.");
     onMount(async () => {

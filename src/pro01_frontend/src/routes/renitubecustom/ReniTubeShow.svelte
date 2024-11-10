@@ -19,7 +19,7 @@
         // "https://cdn.jsdelivr.net/gh/guansss/pixi-live2d-display/test/assets/haru/haru_greeter_t03.model3.json"
         // "/src/routes/renitube/resource/Hana/Nurse_chan_Draft.model3.json"
         // "/resource/hiyori_pro_en/runtime/hiyori_pro_t11.model3.json"
-       const model = await Live2DModel.from("/resource/hiyori_pro_en/runtime/hiyori_pro_t11.model3.json", 
+       const model = await Live2DModel.from("https://imr7x-kaaaa-aaaaj-azvwq-cai.icp0.io/resource/hiyori_pro_en/runtime/hiyori_pro_t11.model3.json", 
             {ticker: Ticker.shared}
         );
 
