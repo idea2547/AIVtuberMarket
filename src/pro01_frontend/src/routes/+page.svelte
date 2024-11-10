@@ -2,10 +2,13 @@
   import { onMount } from 'svelte';
   import { ethers } from 'ethers';
 
+  import '@pixi/unsafe-eval';
+
+  import ReniTubeShow from "./ReniTubeShow.svelte";
   let featuredVTubers = [
-    { id: 1, name: 'Aiko', image: '/placeholder.svg?height=300&width=300', traits: ['Cheerful', 'Energetic'] },
-    { id: 2, name: 'Neo', image: '/placeholder.svg?height=300&width=300', traits: ['Cool', 'Mysterious'] },
-    { id: 3, name: 'Luna', image: '/placeholder.svg?height=300&width=300', traits: ['Elegant', 'Calm'] },
+    { id: 1, name: 'Aiko', image: '', traits: ['Cheerful', 'Energetic'] },
+    { id: 2, name: 'Neo', image: '', traits: ['Cool', 'Mysterious'] },
+    { id: 3, name: 'Luna', image: '', traits: ['Elegant', 'Calm'] },
   ];
 
   let currentVTuber = 0;
@@ -52,27 +55,25 @@
   <title>AI VTuber Marketplace - Own, Trade, Interact with Virtual Influencers</title>
 </svelte:head>
 
-<div class="hero min-h-screen bg-base-200">
+<div class="hero min-h-screen">
   <div class="hero-content flex-col lg:flex-row-reverse">
-    <div class="carousel w-full max-w-sm lg:max-w-md">
-      {#each featuredVTubers as vtuber, index}
-        <div class="carousel-item w-full" class:hidden={index !== currentVTuber}>
-          <img src={vtuber.image} alt={vtuber.name} class="rounded-lg shadow-2xl" />
-          <div class="absolute bottom-0 left-0 right-0 bg-base-100 bg-opacity-75 p-4">
-            <h3 class="text-xl font-bold">{vtuber.name}</h3>
-            <p>{vtuber.traits.join(', ')}</p>
-          </div>
-        </div>
-      {/each}
-    </div>
-    <div class="text-center lg:text-left">
+    <!-- Content Section (on the left) -->
+    <div class="text-center lg:text-left max-w-md mx-auto lg:mx-0">
       <h1 class="text-5xl font-bold">AI VTuber Marketplace</h1>
       <p class="py-6">Own, Trade, and Interact with Virtual Influencers</p>
+      
+      <!-- Call to Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
         <a href="/marketplace" class="btn btn-primary">Browse VTubers</a>
         <a href="/create" class="btn btn-secondary">Create VTuber</a>
-        <button class="btn btn-outline" on:click={() => document.getElementById('info-section').scrollIntoView({ behavior: 'smooth' })}>Learn More</button>
       </div>
+
+      <button class="btn btn-outline mt-6" on:click={() => document.getElementById('info-section').scrollIntoView({ behavior: 'smooth' })}>Learn More</button>
+    </div>
+
+    <!-- ReniTubeShow Component (on the right, responsive) -->
+    <div class="flex flex-col lg:flex-row items-center justify-center lg:pl-10 pt-10 lg:pt-0">
+      <ReniTubeShow />
     </div>
   </div>
 </div>
