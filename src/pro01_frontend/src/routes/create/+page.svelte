@@ -774,105 +774,113 @@
     ];
   
     const personalityTraits = [
-      'Cheerful', 'Shy', 'Energetic', 'Calm', 'Mysterious', 'Friendly',
-      'Sarcastic', 'Optimistic', 'Pessimistic', 'Confident', 'Humble'
-    ];
-  
-    function handleFileChange(event) {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-        file = selectedFile;
-        previewUrl = URL.createObjectURL(selectedFile);
-      }
-    }
-  
-    async function handleSubmit() {
-      try {
-        if (typeof window.ethereum !== 'undefined') {
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const provider = new ethers.BrowserProvider(window.ethereum); //for read-only
-          const signer = provider.getSigner(); //for transaction
-          const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
-  
-          // Updated parseEther for ethers.js v6
-          const mintPrice = ethers.parseEther(price.toString());
+    'Cheerful', 'Shy', 'Energetic', 'Calm', 'Mysterious', 'Friendly',
+    'Sarcastic', 'Optimistic', 'Pessimistic', 'Confident', 'Humble'
+  ];
 
-          const tx = await contract.mintVTuber(
-            name,
-            personality,
-            voice,
-            traits,
-            description,
-            mintPrice,
-            royalties,
-            previewUrl
-          );
-  
-          await tx.wait();
-          alert(`VTuber minted successfully! Transaction hash: ${tx.hash}`);
-        } else {
-          alert('Please install MetaMask or another Ethereum wallet to mint your VTuber.');
-        }
-      } catch (error) {
-        console.error('Error minting VTuber:', error);
-        alert(`Error minting VTuber: ${error.message}`);
-      }
+  function handleFileChange(event) {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      file = selectedFile;
+      previewUrl = URL.createObjectURL(selectedFile);
     }
-  
-    onMount(() => {
-      return () => {
-        if (previewUrl) {
-          URL.revokeObjectURL(previewUrl);
-        }
-      };
-    });
-  </script>
-  
-  <svelte:head>
-    <title>Create VTuber - AI VTuber Marketplace</title>
-  </svelte:head>
-  
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8">Create Your VTuber</h1>
-  
-    <form on:submit|preventDefault={handleSubmit} class="space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-4">
-          <div class="form-control">
-            <label for="name" class="label">
-              <span class="label-text">VTuber Name</span>
-            </label>
-            <input type="text" id="name" bind:value={name} class="input input-bordered" required />
-          </div>
-  
-          <div class="form-control">
-            <label for="personality" class="label">
-              <span class="label-text">Personality</span>
-            </label>
-            <input type="text" id="personality" bind:value={personality} class="input input-bordered" required />
-          </div>
-  
-          <div class="form-control">
-            <label for="voice" class="label">
-              <span class="label-text">Voice Type</span>
-            </label>
-            <select bind:value={voice} id="voice" class="select select-bordered w-full">
-              <option value="soprano">Soprano</option>
-              <option value="alto">Alto</option>
-              <option value="tenor">Tenor</option>
-              <option value="bass">Bass</option>
-            </select>
-          </div>
-  
-          <div class="form-control">
-            <label class="label">
+  }
+
+  async function handleSubmit() {
+    try {
+      if (typeof window.ethereum !== 'undefined') {
+        // Request wallet connection
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+        // Initialize provider and signer
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+
+        // Initialize contract instance with signer
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+        // Parse ether for price
+        const mintPrice = ethers.parseEther(price.toString());
+
+        // Call the contract's mintVTuber function
+        const tx = await contract.mintVTuber(
+          name,
+          personality,
+          voice,
+          traits,
+          description,
+          mintPrice,
+          royalties,
+          previewUrl
+        );
+
+        // Wait for transaction confirmation
+        await tx.wait();
+        alert(`VTuber minted successfully! Transaction hash: ${tx.hash}`);
+      } else {
+        alert('Please install MetaMask or another Ethereum wallet to mint your VTuber.');
+      }
+    } catch (error) {
+      console.error('Error minting VTuber:', error);
+      alert(`Error minting VTuber: ${error.message}`);
+    }
+  }
+
+  onMount(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  });
+</script>
+
+<svelte:head>
+  <title>Create VTuber - AI VTuber Marketplace</title>
+</svelte:head>
+
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-4xl font-bold mb-8">Create Your VTuber</h1>
+
+  <form on:submit|preventDefault={handleSubmit} class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-4">
+        <div class="form-control">
+          <label for="name" class="label">
+            <span class="label-text">VTuber Name</span>
+          </label>
+          <input type="text" id="name" bind:value={name} class="input input-bordered" required />
+        </div>
+
+        <div class="form-control">
+          <label for="personality" class="label">
+            <span class="label-text">Personality</span>
+          </label>
+          <input type="text" id="personality" bind:value={personality} class="input input-bordered" required />
+        </div>
+
+        <div class="form-control">
+          <label for="voice" class="label">
+            <span class="label-text">Voice Type</span>
+          </label>
+          <select bind:value={voice} id="voice" class="select select-bordered w-full">
+            <option value="soprano">Soprano</option>
+            <option value="alto">Alto</option>
+            <option value="tenor">Tenor</option>
+            <option value="bass">Bass</option>
+          </select>
+        </div>
+
+        <div class="form-control">
+            <label class="label" for="traits">
               <span class="label-text">Personality Traits (select up to 3)</span>
             </label>
             <div class="grid grid-cols-2 gap-2">
-              {#each personalityTraits as trait}
-                <label class="label cursor-pointer">
+              {#each personalityTraits as trait, index}
+                <label class="label cursor-pointer" for={`trait-${index}`}>
                   <span class="label-text">{trait}</span>
                   <input
+                    id={`trait-${index}`} 
                     type="checkbox"
                     value={trait}
                     bind:group={traits}
@@ -883,49 +891,67 @@
               {/each}
             </div>
           </div>
+          
+
+      <div class="space-y-4">
+        <div class="form-control">
+          <label for="description" class="label">
+            <span class="label-text">Description</span>
+          </label>
+          <textarea id="description" bind:value={description} class="textarea textarea-bordered h-24" />
         </div>
-  
-        <div class="space-y-4">
-          <div class="form-control">
-            <label for="description" class="label">
-              <span class="label-text">Description</span>
-            </label>
-            <textarea id="description" bind:value={description} class="textarea textarea-bordered h-24" />
+
+        <div class="form-control">
+          <label for="price" class="label">
+            <span class="label-text">Price (BFT)</span>
+          </label>
+          <input type="number" id="price" bind:value={price} min="0.01" step="0.01" class="input input-bordered" required />
+        </div>
+
+        <div class="form-control">
+          <label for="royalties" class="label">
+            <span class="label-text">Royalties (%)</span>
+          </label>
+          <input type="range" id="royalties" bind:value={royalties} min="0" max="25" class="range" step="1" />
+          <div class="w-full flex justify-between text-xs px-2">
+            <span>0%</span>
+            <span>25%</span>
           </div>
-  
-          <div class="form-control">
-            <label for="price" class="label">
-              <span class="label-text">Price (ETH)</span>
-            </label>
-            <input type="number" id="price" bind:value={price} min="0.01" step="0.01" class="input input-bordered" required />
-          </div>
-  
-          <div class="form-control">
-            <label for="royalties" class="label">
-              <span class="label-text">Royalties (%)</span>
-            </label>
-            <input type="range" id="royalties" bind:value={royalties} min="0" max="25" class="range" step="1" />
-            <div class="w-full flex justify-between text-xs px-2">
-              <span>0%</span>
-              <span>25%</span>
-            </div>
-            <div class="text-center mt-1">Current: {royalties}%</div>
-          </div>
-  
-          <div class="form-control">
+          <div class="text-center mt-1">Current: {royalties}%</div>
+        </div>
+
+        <div class="form-control">
             <label for="file" class="label">
-              <span class="label-text">Upload Live2D Model</span>
+              <span class="label-text">Upload Live2D Model or Enter URL</span>
             </label>
-            <input type="file" id="file" accept=".model3.json" on:change={handleFileChange} class="file-input file-input-bordered w-full" required />
-            {#if previewUrl}
-              <img src={previewUrl} alt="Live2D Model Preview" class="mt-2 max-w-full h-auto" />
-            {/if}
+          
+            <!-- File Input for .model3.json files -->
+            <input 
+              type="file" 
+              id="file" 
+              accept=".model3.json" 
+              on:change={handleFileChange} 
+              class="file-input file-input-bordered w-full" 
+            />
+          
+            <!-- URL Input for previewUrl -->
+            <label for="previewUrl" class="label mt-4">
+              <span class="label-text">Or Enter Live2D Model URL</span>
+            </label>
+            <input 
+              type="url" 
+              id="previewUrl" 
+              bind:value={previewUrl} 
+              on:input={() => previewUrl && (previewUrlValid = true)} 
+              class="input input-bordered w-full" 
+              placeholder="https://example.com/model3.json"
+            />
           </div>
-        </div>
+        <div class="flex justify-end">
+            <button type="submit" class="btn btn-primary">Mint My VTuber</button>
+          </div>
       </div>
-  
-      <div class="flex justify-end">
-        <button type="submit" class="btn btn-primary">Mint My VTuber</button>
-      </div>
-    </form>
-  </div>
+    </div>
+
+  </form>
+</div>
