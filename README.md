@@ -1,4 +1,5 @@
 # 🌐 AI VTuber Marketplace
+# Won $1500 from ICP Chain Fusion Hacker House BKK
 
 ![Project Logo](path/to/logo.png)
 
